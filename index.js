@@ -2,7 +2,7 @@ const fs=require("fs");
 
 const sub=process.platform==="win32"?"\\":"/";
 
-function directoryToFiles(dir){
+function getFiles(dir){
 	let directories=[dir];
 	let foundDirectories;
 	const files=[];
@@ -36,7 +36,23 @@ function directoryToFiles(dir){
 	while(foundDirectories.length>0);
 	return files;
 }
+function filterFiles(files,types){
+	const emptyType=(
+		types.includes("")||
+		types.includes(false)||
+		types.includes(null)||
+		types.includes(undefined)
+	);
+	return files.filter(item=>
+		types.includes(item.split(".").pop())||
+		(
+			emptyType&&
+			!item.includes(".")
+		)
+	);
+}
 
 module.exports={
-	getFiles: directoryToFiles,
+	getFiles,
+	filterFiles,
 };

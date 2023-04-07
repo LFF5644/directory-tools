@@ -4,10 +4,11 @@ const sub=process.platform==="win32"?"\\":"/";
 
 function directoryToFiles(dir){
 	let directories=[dir];
+	let foundDirectories;
 	const files=[];
-	while(true){
+	do{
 		let scannedDirectories=[];
-		let foundDirectories=[];
+		foundDirectories=[];
 		for(const directory of directories){
 			scannedDirectories.push(directory);
 			let itemsInDirectory;
@@ -31,8 +32,8 @@ function directoryToFiles(dir){
 			),
 			...foundDirectories,
 		];
-		if(foundDirectories.length===0) break;
 	}
+	while(foundDirectories.length>0);
 	return files;
 }
 

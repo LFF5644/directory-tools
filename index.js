@@ -31,6 +31,7 @@ function getFiles(dir){
 		}
 		while(foundDirectories.length>0);
 	}catch(e){
+		console.log(e);
 		return null;
 	}
 	return files;

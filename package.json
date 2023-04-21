@@ -1,12 +1,12 @@
 {
 	"name": "get_dir_files",
 	"version": "1.0.0",
-	"description": "",
+	"description": "get all files in directory",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
-		},
-	"keywords": [],
+	},
+	"keywords": ["ls","list-files","dir /s"],
 	"author": "LFF5644",
 	"license": "ISC"
 }

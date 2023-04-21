@@ -71,7 +71,7 @@ function makeDirectoriesInPath(path){
 	for(const index in path.split(sub)){
 		const createDir=(path
 			.split(sub)
-			.filter((item,i)=>i<=index)
+			.slice(0,index)
 			.join(sub)
 		);
 		//console.log(index,createDir);

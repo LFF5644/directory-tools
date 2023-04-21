@@ -6,34 +6,40 @@ function getFiles(dir){
 	let directories=[dir];
 	let foundDirectories;
 	const files=[];
-	try{
-		do{
-			let scannedDirectories=[];
-			foundDirectories=[];
-			for(const directory of directories){
-				scannedDirectories.push(directory);
-				let itemsInDirectory;
+	do{
+		let scannedDirectories=[];
+		foundDirectories=[];
+		for(const directory of directories){
+			scannedDirectories.push(directory);
+			let itemsInDirectory;
+			try{
 				itemsInDirectory=fs.readdirSync(directory);
-				for(let item of itemsInDirectory){
-					item=directory+item;
-					const stat=fs.lstatSync(item);
-					if(stat.isFile()) files.push(item);
-					else if(stat.isDirectory()) foundDirectories.push(item+sub);
-					else console.log("unknown item: "+item);
-				}
+			}catch(e){
+				console.log("cant list directory: "+directory,e.code);
+				continue;
 			}
-			directories=[
-				...directories.filter(directory=>
-					!scannedDirectories.includes(directory)
-				),
-				...foundDirectories,
-			];
+			for(let item of itemsInDirectory){
+				item=directory+item;
+				let stat;
+				try{
+					stat=fs.lstatSync(item);
+				}catch(e){
+					console.log("cant get item infos: "+item,e.code);
+					continue;
+				}
+				if(stat.isFile()) files.push(item);
+				else if(stat.isDirectory()) foundDirectories.push(item+sub);
+				else console.log("unknown item: "+item);
+			}
 		}
-		while(foundDirectories.length>0);
-	}catch(e){
-		console.log(e);
-		return null;
+		directories=[
+			...directories.filter(directory=>
+				!scannedDirectories.includes(directory)
+			),
+			...foundDirectories,
+		];
 	}
+	while(foundDirectories.length>0);
 	return files;
 }
 function filterFiles(files,types){

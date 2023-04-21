@@ -1,10 +1,10 @@
 {
-	"name": "get_dir_files",
+	"name": "get-files-in-directory",
 	"version": "1.0.0",
 	"description": "get all files in directory",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"demo": "node demo.js"
 	},
 	"keywords": ["ls","list-files","dir /s"],
 	"author": "LFF5644",

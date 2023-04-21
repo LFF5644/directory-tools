@@ -42,15 +42,15 @@ function getFiles(dir){
 	while(foundDirectories.length>0);
 	return files;
 }
-function filterFiles(files,types){
-	const emptyType=(
+function filterFiles(files,types=[]){
+	const emptyType=types&&(
 		types.includes("")||
 		types.includes(false)||
 		types.includes(null)||
 		types.includes(undefined)
 	);
 	return files.filter(item=>
-		types.includes(item.split(".").pop())||
+		(types&&types.includes(item.split(".").pop()))||
 		(
 			emptyType&&
 			!item.includes(".")

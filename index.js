@@ -3,6 +3,7 @@ const fs=require("fs");
 const sub=process.platform==="win32"?"\\":"/";
 
 function getFiles(dir){
+	if(!dir.endsWith(sub)) dir+=sub;
 	let directories=[dir];
 	let foundDirectories;
 	const files=[];

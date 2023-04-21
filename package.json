@@ -1,5 +1,5 @@
 {
-	"name": "get-files-in-directory",
+	"name": "directory-tools",
 	"version": "1.0.0",
 	"description": "get all files in directory",
 	"main": "index.js",

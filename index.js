@@ -58,8 +58,30 @@ function filterFiles(files,types=[]){
 		)
 	);
 }
+function makeDirectory(path){
+	//console.log("creating directory",path);
+	try{
+		fs.mkdirSync(path);
+	}catch(e){
+		return false;
+	}
+	return true;
+}
+function makeDirectoriesInPath(path){
+	for(const index in path.split(sub)){
+		const createDir=(path
+			.split(sub)
+			.filter((item,i)=>i<=index)
+			.join(sub)
+		);
+		//console.log(index,createDir);
+		makeDirectory(createDir);
+	}
+}
 
 module.exports={
-	getFiles,
 	filterFiles,
+	getFiles,
+	makeDirectoriesInPath,
+	makeDirectory,
 };

@@ -95,16 +95,16 @@ function getFolderItems(folder){
 			stat=fs.lstatSync(itemPath);
 		}catch(e){
 			console.log("cant get informations about "+item+" add to unknown");
-			newItems.push([item,"unknown"]);
+			newItems.push({name:item,type:"unknown"});
 			continue;
 		}
-		if(stat.isBlockDevice()) newItems.push([item,"blockDevice"]);
-		else if(stat.isCharacterDevice()) newItems.push([item,"characterDevice"]);
-		else if(stat.isDirectory()) newItems.push([item,"directory"]);
-		else if(stat.isFile()) newItems.push([item,"file"]);
-		else if(stat.isSocket()) newItems.push([item,"socket"]);
-		else if(stat.isSymbolicLink()) newItems.push([item,"symbolicLink"]);
-		else newItems.push([item,"other"]);
+		if(stat.isBlockDevice()) newItems.push({name:item,type:"blockDevice"});
+		else if(stat.isCharacterDevice()) newItems.push({name:item,type:"characterDevice"});
+		else if(stat.isDirectory()) newItems.push({name:item,type:"directory"});
+		else if(stat.isFile()) newItems.push({name:item,type:"file"});
+		else if(stat.isSocket()) newItems.push({name:item,type:"socket"});
+		else if(stat.isSymbolicLink()) newItems.push({name:item,type:"symbolicLink"});
+		else newItems.push({name:item,type:"other"});
 	}
 	return newItems;
 }
